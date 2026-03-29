@@ -7,7 +7,7 @@ import Testing
 @testable import LayoutRecallKit
 
 @MainActor
-@Test
+@Test(.enabled(if: ProcessInfo.processInfo.environment["CI"] == nil, "AppKit snapshot rendering is only supported in local interactive runs."))
 func renderMenuAndSettingsSnapshots() async throws {
     let outputDirectory = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true)
         .appendingPathComponent("layoutrecall-ui-snapshots", isDirectory: true)
